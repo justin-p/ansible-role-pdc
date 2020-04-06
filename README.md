@@ -23,8 +23,6 @@ If you want to change any variables overwrite the ones listed in `vars/main.yml`
 
 | Variable                         | Default value                       |
 |:---------------------------------|:------------------------------------|
-| pdc_admin_username               | administrator                       |
-| pdc_admin_password               | P@ssw0rd!                           |
 | pdc_admin_password_never_expires | yes                                 |
 | pdc_admin_groups                 | ["Administrators","Domain Admins","Domain Users","Enterprise Admins","Group Policy Creator Owners","Schema Admins"] |
 | pdc_domain                       | ad.example.test                     |
