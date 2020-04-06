@@ -23,8 +23,6 @@ If you want to change any variables overwrite the ones listed in `vars/main.yml`
 
 | Variable                         | Default value                       |
 |:---------------------------------|:------------------------------------|
-| pdc_admin_password_never_expires | yes                                 |
-| pdc_admin_groups                 | ["Administrators","Domain Admins","Domain Users","Enterprise Admins","Group Policy Creator Owners","Schema Admins"] |
 | pdc_domain                       | ad.example.test                     |
 | pdc_netbios                      | TEST                                |
 | pdc_domain_path                  | dc=ad,dc=example,dc=test            |
@@ -33,7 +31,7 @@ If you want to change any variables overwrite the ones listed in `vars/main.yml`
 | pdc_forest_functional_level      | Default                             |
 | pdc_delayed_services             | ["WinRM"]                           |
 | pdc_required_psmodules           | ["ActiveDirectoryDsc"]              |
-| pdc_required_features            | ["AD-domain-services","DNS"]        |
+| pdc_required_features            | ["AD-domain-services", "DNS"]       |
 
 ## Dependencies
 
