@@ -9,4 +9,4 @@ pdc_domain_functional_level: Default
 pdc_forest_functional_level: Default
 pdc_delayed_services: ["WinRM"]
 pdc_required_psmodules: ["ActiveDirectoryDsc"]
-pdc_required_features: ["AD-domain-services","DNS"]
+pdc_required_features: ["AD-domain-services", "DNS"]
