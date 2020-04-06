@@ -1,0 +1,4 @@
+- name: Reboot if the Active Directory requires it
+  win_reboot:
+    post_reboot_delay: 300
+  when: pdc_install_domain.reboot_required

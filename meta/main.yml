@@ -1,0 +1,16 @@
+galaxy_info:
+  role_name: pdc
+  author: Justin Perdok
+  description: Setup a Primary Domain Controller and Active Directory on a Windows Server.
+  company: Orange Cyberdefense
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+  - name: Windows
+    versions:
+     - 2012R2
+     - 2016
+     - 2019
+  galaxy_tags: ["activedirectory", "ad", "domaincontroller","pdc"]
+dependencies:
+  - { role: justin_p.posh5 }
