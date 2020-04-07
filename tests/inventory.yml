@@ -2,15 +2,15 @@ all:
   children:
     primarydomaincontroller:
       hosts:
-        DC2019:
-          ansible_host: 192.168.56.10
-          vagrant_box: jborean93/WindowsServer2019
+        #DC2019:
+        #  ansible_host: 192.168.56.10
+        #  vagrant_box: jborean93/WindowsServer2019
         #DC2016:
         #  ansible_host: 192.168.57.10
         #  vagrant_box: jborean93/WindowsServer2016
-        #DC2012R2:
-        #  ansible_host: 192.168.58.10
-        #  vagrant_box: jborean93/WindowsServer2012R2     
+        DC2012R2:
+          ansible_host: 192.168.58.10
+          vagrant_box: jborean93/WindowsServer2012R2     
   vars:
     ansible_user: vagrant
     ansible_password: vagrant

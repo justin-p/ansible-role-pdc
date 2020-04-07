@@ -2,6 +2,10 @@
 # defaults file for ansible-pdc
 # see ansible-pdc/vars/main.yml for values
 
+## win_user
+create_primary_domain_controller_win_user_name: "{{ pdc_administrator_username }}"
+create_primary_domain_controller_win_user_password: "{{ pdc_administrator_password }}"
+
 ## win_domain
 create_primary_domain_controller_win_domain_dns_domain_name: "{{ pdc_domain }}"
 create_primary_domain_controller_win_domain_domain_netbios_name: "{{ pdc_netbios }}"

@@ -11,6 +11,15 @@
     - create_primary_domain_controller_win_service_delayed
     - create_primary_domain_controller_win_psmodule_required
     - create_primary_domain_controller_win_feature_required
+    - create_primary_domain_controller_win_user_name
+    - create_primary_domain_controller_win_user_password
+
+- name: Ensure the local user {{ create_primary_domain_controller_win_user_name }} has the password specified for {{ pdc_netbios }}\Administrator
+  win_user:
+    name: "{{ create_primary_domain_controller_win_user_name }}"
+    password: "{{ create_primary_domain_controller_win_user_password }}"
+    groups: administrators
+  when: not ansible_windows_domain_member
 
 - name: Ensure services start when the system has settled
   win_service:
@@ -18,7 +27,7 @@
     start_mode: delayed
   with_items: "{{ create_primary_domain_controller_win_service_delayed }}"
 
-- name: Check if required DSC resources and Powershell Modules are present
+- name: Ensure required DSC resources and Powershell Modules are present
   win_psmodule:
     name: "{{ item }}"
     state: present
@@ -33,14 +42,25 @@
     forest_mode: "{{ create_primary_domain_controller_win_domain_forest_mode }}"
   register: pdc_install_domain
   notify: Reboot if the Active Directory requires it
+  when: not ansible_windows_domain_member
 
 - name: Force all notified handlers to run at this point, not waiting for normal sync points
   meta: flush_handlers
+
+# set up dns 
 
 - name: Ensure a Domain Controller is available in the domain
   win_dsc:
     resource_name: WaitForADDomain
     DomainName: "{{ create_primary_domain_controller_win_domain_dns_domain_name }}"
+
+- name: Ensure the UserPrincipalName of {{ pdc_netbios }}\Administrator is set to Administrator@{{ pdc_domain }}
+  win_domain_user:
+    name: Administrator
+    upn: "Administrator@{{ pdc_domain }}"    
+    domain_username: "{{ pdc_netbios }}\\Administrator"
+    domain_password: "{{ create_primary_domain_controller_win_user_password }}"
+    update_password: on_create
 
 - name: Ensure required Windows Features are installed
   win_feature:
