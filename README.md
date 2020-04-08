@@ -37,7 +37,9 @@ Works on
 
 ## Dependencies
 
-WinRM on the windows host should configured for Ansible.
+- WinRM on the windows host should configured for Ansible.
+- justin_p.wincom
+  - justin_p.posh5
 
 ## Example Playbook
 

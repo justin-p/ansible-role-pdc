@@ -13,4 +13,10 @@ galaxy_info:
      - 2019
   galaxy_tags: ["activedirectory", "ad", "domaincontroller", "pdc"]
 dependencies:
-  - { role: justin_p.wincom }
+  - role: justin_p.wincom
+    version: v0.0.2
+    vars:
+      wincom_required_psmodule: "{{ pdc_required_psmodules }}"
+      wincom_service_delayed: "{{ pdc_delayed_services }}"
+      wincom_dns_nics: "{{ pdc_dns_nics }}"
+      wincom_dns_servers: "{{ pdc_dns_servers }}"

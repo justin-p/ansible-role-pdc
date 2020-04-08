@@ -24,17 +24,6 @@
     groups: administrators
   when: not ansible_windows_domain_member
 
-- name: Ensure required DSC resources and Powershell Modules are present
-  win_psmodule:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ pdc_required_psmodules }}"
-
-- name: Ensure DNS Servers on adapter {{ pdc_dns_nics }} are set to {{ pdc_dns_servers }}
-  win_dns_client:
-    adapter_names: "{{ pdc_dns_nics }}"
-    ipv4_addresses: "{{ pdc_dns_servers }}"
-
 - name: Ensure there is a Active Directory domain and forest on {{ ansible_hostname }}
   win_domain:
     dns_domain_name: "{{ pdc_domain }}"
@@ -57,7 +46,7 @@
 - name: Ensure the UserPrincipalName of {{ pdc_netbios }}\{{ pdc_administrator_username }} is set to {{ pdc_administrator_username }}@{{ pdc_domain }}
   win_domain_user:
     name: "{{ pdc_administrator_username }}"
-    upn: "{{ pdc_administrator_username }}@{{ pdc_domain }}"    
+    upn: "{{ pdc_administrator_username }}@{{ pdc_domain }}"
     domain_username: "{{ pdc_netbios }}\\{{ pdc_administrator_username }}"
     domain_password: "{{ pdc_administrator_password }}"
     update_password: on_create
