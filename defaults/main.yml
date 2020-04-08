@@ -9,6 +9,5 @@ pdc_netbios: TEST
 pdc_domain_safe_mode_password: P@ssw0rd!
 pdc_domain_functional_level: Default
 pdc_forest_functional_level: Default
-pdc_delayed_services: ["WinRM"]
 pdc_required_psmodules: ["ActiveDirectoryDsc"]
 pdc_required_features: ["AD-domain-services", "DNS"]

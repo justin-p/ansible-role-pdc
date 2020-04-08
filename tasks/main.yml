@@ -24,12 +24,6 @@
     groups: administrators
   when: not ansible_windows_domain_member
 
-- name: Ensure services start when the system has settled
-  win_service:
-    name: "{{ item }}"
-    start_mode: delayed
-  with_items: "{{ pdc_delayed_services }}"
-
 - name: Ensure required DSC resources and Powershell Modules are present
   win_psmodule:
     name: "{{ item }}"

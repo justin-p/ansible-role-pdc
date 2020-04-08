@@ -13,4 +13,4 @@ galaxy_info:
      - 2019
   galaxy_tags: ["activedirectory", "ad", "domaincontroller", "pdc"]
 dependencies:
-  - { role: justin_p.posh5 }
+  - { role: justin_p.wincom }
