@@ -18,15 +18,14 @@ Works on
 
 ## Role Variables
 
-All variables listed in `default/main.yml` reference variables from `vars/main.yml`.  
-If you want to change any variables overwrite the ones listed in `vars/main.yml`.
-
-### `vars/main.yml`
+### `defaults/main.yml`
 
 | Variable                         | Default value                       | Explanation |
 |:---------------------------------|:------------------------------------|:------------|
 | pdc_administrator_username       | Administrator                       | Settings this to Built-in Administrator account ensure that we know the password of NETBIOS\Administrator. 9/10 times you should leave this to the default value. |
 | pdc_administrator_password       | P@ssw0rd!                           | The password of Built-in Administrator account. This password (if pdc_administrator_username left to the default value) will become the password of NETBIOS\Administrator. Change this to a strong password. |
+| pdc_dns_nics                     | *                                   | The name of the ethernet adapter to setup DNS on. Defaults to wildcard. 9/10 times you should leave this to the default value. |
+| pdc_dns_servers                  | {{ ansible_host }}                  | The DNS server to use on pdc_dns_nics. Defaults to `{{ ansible_host }}`. 9/10 times you should leave this to the default value. |
 | pdc_domain                       | ad.example.test                     | The Domain of the new Active Directory Forest. For testing\lab purposes it's recommend to use [ad.domain.test](https://www.wikiwand.com/en/.test). For production it's recommend to use a existing domain with a ad subdomain: `ad.domain.tld` |
 | pdc_netbios                      | TEST                                | The NetBIOS of the new Active Directory Forest. Change this to something logical that is not AD. |
 | pdc_domain_path                  | dc=ad,dc=example,dc=test            | The Distinguished Name of the domain. This should match the value given in pdc_domain (Example: `dc=ad,dc=domain,dc=test`) |
@@ -58,9 +57,9 @@ After creating the VM it will automatically run our role.
 
 #### Usage
 
-- Run `vagrant up` to create a VM and run our playbook
-- Run `vagrant provision` to reapply our playbook
-- Run `vagrant destroy -f && vagrant up` to recreate the VM and run our playbook.
+- Run `vagrant up` to create a VM and run our role.
+- Run `vagrant provision` to reapply our role.
+- Run `vagrant destroy -f && vagrant up` to recreate the VM and run our role.
 - Run `vagrant destroy` to remove the VM.
 
 ## License

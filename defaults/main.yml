@@ -1,26 +1,14 @@
 ---
 # defaults file for ansible-pdc
-# see ansible-pdc/vars/main.yml for values
-
-## win_user
-create_primary_domain_controller_win_user_name: "{{ pdc_administrator_username }}"
-create_primary_domain_controller_win_user_password: "{{ pdc_administrator_password }}"
-
-## win_domain
-create_primary_domain_controller_win_domain_dns_domain_name: "{{ pdc_domain }}"
-create_primary_domain_controller_win_domain_domain_netbios_name: "{{ pdc_netbios }}"
-create_primary_domain_controller_win_domain_safe_mode_password: "{{ pdc_domain_safe_mode_password }}"
-create_primary_domain_controller_win_domain_domain_mode: "{{ pdc_domain_functional_level }}"
-create_primary_domain_controller_win_domain_forest_mode: "{{ pdc_forest_functional_level }}"
-
-## win_service
-create_primary_domain_controller_win_service_delayed: "{{ pdc_delayed_services }}"
-
-## win_psmodule
-create_primary_domain_controller_win_psmodule_required: "{{ pdc_required_psmodules }}"
-
-## win_reboot
-create_primary_domain_controller_win_reboot_required_running_services: " {{pdc_required_ad_services}} "
-
-## win_feature
-create_primary_domain_controller_win_feature_required: "{{ pdc_required_features }}"
+pdc_administrator_username: Administrator
+pdc_administrator_password: P@ssw0rd!
+pdc_dns_nics: "*"
+pdc_dns_servers: "{{ ansible_host }}"
+pdc_domain: ad.example.test
+pdc_netbios: TEST
+pdc_domain_safe_mode_password: P@ssw0rd!
+pdc_domain_functional_level: Default
+pdc_forest_functional_level: Default
+pdc_delayed_services: ["WinRM"]
+pdc_required_psmodules: ["ActiveDirectoryDsc"]
+pdc_required_features: ["AD-domain-services", "DNS"]
