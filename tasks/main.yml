@@ -46,11 +46,11 @@
 - name: Ensure DNS Forwarders are set to desired forwarders
   win_shell: |
     Try {
-      $CurrentForwarders = $([Array]$(Get-DnsServerForwarder).IPAddress.IPAddressToString) 
-      $DesiredForwarders = ConvertFrom-JSON '{{ pdc_desired_dns_forwarders | to_json }}'      
+      $CurrentForwarders = $([Array]$(Get-DnsServerForwarder).IPAddress.IPAddressToString)
+      $DesiredForwarders = ConvertFrom-JSON '{{ pdc_desired_dns_forwarders | to_json }}'
       if ($Null -ne $(Compare-Object $CurrentForwarders $DesiredForwarders)) {
         Set-DNSServerForwarder -IPAddress $DesiredForwarders
-        Exit 1 
+        Exit 1
       } Else {
         Exit 0
       }
