@@ -43,6 +43,32 @@
     resource_name: WaitForADDomain
     DomainName: "{{ pdc_domain }}"
 
+- name: Ensure DNS Forwarders are set to desired forwarders
+  win_shell: |
+    Try {
+      $CurrentForwarders = $([Array]$(Get-DnsServerForwarder).IPAddress.IPAddressToString) 
+      $DesiredForwarders = ConvertFrom-JSON '{{ pdc_desired_dns_forwarders | to_json }}'      
+      if ($Null -ne $(Compare-Object $CurrentForwarders $DesiredForwarders)) {
+        Set-DNSServerForwarder -IPAddress $DesiredForwarders
+        Exit 1 
+      } Else {
+        Exit 0
+      }
+    } Catch {
+      return 2
+    }
+  register: dns_forwarders
+  changed_when: dns_forwarders.rc == 1
+  failed_when: dns_forwarders.rc == 2
+  become: yes
+  become_user: "{{ ansible_user }}"
+  become_method: runas
+
+- name: Ensure upstream DNS servers is our own IP
+  win_dns_client:
+   adapter_names: "{{ pdc_dns_nics }}"
+   ipv4_addresses: "{{ ansible_host }}"
+
 - name: Ensure the UserPrincipalName of {{ pdc_netbios }}\{{ pdc_administrator_username }} is set to {{ pdc_administrator_username }}@{{ pdc_domain }}
   win_domain_user:
     name: "{{ pdc_administrator_username }}"

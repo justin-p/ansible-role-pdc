@@ -12,3 +12,4 @@ pdc_domain_functional_level: Default
 pdc_forest_functional_level: Default
 pdc_required_psmodules: [xPSDesiredStateConfiguration, NetworkingDsc, ComputerManagementDsc, ActiveDirectoryDsc] 
 pdc_required_features: ["AD-domain-services", "DNS"]
+pdc_desired_dns_forwarders: ["8.8.8.8","8.8.4.4"]
