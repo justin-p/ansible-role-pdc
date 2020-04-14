@@ -34,7 +34,7 @@ Works on
 | pdc_forest_functional_level      | Default ([Windows2008R2](https://github.com/MicrosoftDocs/windows-powershell-docs/blob/master/docset/windows/addsdeployment/Install-ADDSForest.md#-forestmode)) | Specifies the forest functional level for the new forest. The default forest functional level in Windows Server is typically the same as the version you are running. Change this depending on your needs. |
 | pdc_required_psmodules           | [xPSDesiredStateConfiguration, NetworkingDsc, ComputerManagementDsc, ActiveDirectoryDsc]              | PowerShell/DSC modules to install from the PSGallery. Always make sure to include `ActiveDirectoryDsc`for the `WaitForAD`-check. 9/10 times you should leave this to the default value. |
 | pdc_required_features            | ["AD-domain-services", "DNS"]       | Windows Features that should be installed on the Domain Controller. Defaults to AD-domain-services and DNS. 9/10 times you should leave this to the default value. |
-| pdc_desired_dns_forwarders       | ["8.8.8.8","8.8.4.4"]               | The desired DNS Forwarders for the PDC. Defaults to Google DNS. Change this depending on your needs. |
+| pdc_desired_dns_forwarders       | ["8.8.8.8", "8.8.4.4"]              | The desired DNS Forwarders for the PDC. Defaults to Google DNS. Change this depending on your needs. |
 
 ## Dependencies
 
