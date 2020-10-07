@@ -72,3 +72,7 @@ MIT
 ## Authors
 
 - Justin Perdok ([@justin-p](https://github.com/justin-p/)), Orange Cyberdefense
+
+## Contributing
+
+Feel free to open issues, contribute and submit your Pull Requests. You can also ping me on Twitter ([@JustinPerdok](https://twitter.com/JustinPe
