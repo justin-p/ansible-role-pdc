@@ -1,0 +1,6 @@
+---
+exclude_paths:
+  - roles/
+  - files/
+  - .github/
+  - molecule/
