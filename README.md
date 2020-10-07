@@ -1,7 +1,10 @@
 # ansible-role-pdc
 
-![Github Actions](https://img.shields.io/github/workflow/status/justin-p/ansible-role-pdc/CI?label=Github%20Actions&logo=github&style=flat-square)
-![Travis](https://img.shields.io/travis/justin-p/ansible-role-pdc?label=Travis&logo=travis&style=flat-square)
+
+[![Ansible Role Name](https://img.shields.io/ansible/role/51179?label=Role%20Name&logo=ansible&style=flat-square)](https://galaxy.ansible.com/justin_p/pdc)
+[![Ansible Quality Score](https://img.shields.io/ansible/quality/51179?label=Ansible%20Quality%20Score&logo=ansible&style=flat-square)](https://galaxy.ansible.com/justin_p/pdc)
+[![Ansible Role Downloads](https://img.shields.io/ansible/role/d/51179?label=Ansible%20Role%20Downloads&logo=ansible&style=flat-square)](https://galaxy.ansible.com/justin_p/pdc)
+[![Github Actions](https://img.shields.io/github/workflow/status/justin-p/ansible-role-pdc/CI?label=Github%20Actions&logo=github&style=flat-square)](https://github.com/justin-p/ansible-role-pdc/actions)
 
 This role will create a brand new Primary Domain Controller with a Active Directory Domain/Forest. No hardening is applied.
 
