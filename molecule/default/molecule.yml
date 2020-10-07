@@ -1,0 +1,7 @@
+---
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+platforms:
+  - name: instance
