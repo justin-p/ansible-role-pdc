@@ -1,4 +1,4 @@
-# ansible-pdc
+# ansible-role-pdc
 
 ![Travis](https://img.shields.io/travis/justin-p/ansible-role-pdc?label=Travis&logo=travis&style=flat-square)
 
