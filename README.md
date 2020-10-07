@@ -1,6 +1,6 @@
 # ansible-pdc
 
-![Travis CI](https://img.shields.io/travis/justin-p/ansible-pdc?style=flat-square)
+![Travis](https://img.shields.io/travis/justin-p/ansible-role-pdc?label=Travis&logo=travis&style=flat-square)
 
 This role will create a brand new Primary Domain Controller with a Active Directory Domain/Forest. No hardening is applied.
 
