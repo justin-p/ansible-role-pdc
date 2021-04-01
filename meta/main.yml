@@ -1,5 +1,6 @@
 galaxy_info:
   role_name: pdc
+  namespace: justin_p
   author: Justin Perdok
   description: Setup a Primary Domain Controller and Active Directory on a Windows Server.
   company: Orange Cyberdefense
