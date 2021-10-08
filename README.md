@@ -52,6 +52,8 @@ Works on
       roles:
          - { role: justin_p.pdc }
 
+See https://github.com/justin-p/ansible-role-pdc/blob/master/tests/inventory.yml for an example inventory.
+
 ## Local Development
 
 This role includes a Vagrantfile that will spin up a local Windows Server 2019 VM in Virtualbox.  
