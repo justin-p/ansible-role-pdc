@@ -2,7 +2,6 @@
 # defaults file for ansible-pdc
 pdc_administrator_username: Administrator
 pdc_administrator_password: P@ssw0rd!
-pdc_delayed_services: [WinRM]
 pdc_dns_nics: "*"
 pdc_dns_servers: "{{ ansible_host }}"
 pdc_domain: ad.example.test
