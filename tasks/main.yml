@@ -29,6 +29,12 @@
     ansible_password: "{{ pdc_administrator_password }}"
   when: not ansible_windows_domain_member
 
+- name: Ensure that required DSC resources and Powershell Modules are present
+  win_psmodule:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ pdc_required_psmodules }}"
+
 - name: Ensure required Windows Features are installed
   win_feature:
     name: '{{ item }}'
