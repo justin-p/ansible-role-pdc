@@ -43,14 +43,16 @@ Works on
 ## Dependencies
 
 - WinRM on the windows host should configured for Ansible.
+- justin_p.posh5
 - justin_p.wincom
-  - justin_p.posh5
 
 ## Example Playbook
 
-    - hosts: primarydomaincontroller
+    - hosts: primary_domain_controller
       roles:
-         - { role: justin_p.pdc }
+        - role: justin_p.posh5
+        - role: justin_p.wincom
+        - role: justin_p.pdc
 
 See https://github.com/justin-p/ansible-role-pdc/blob/master/tests/inventory.yml for an example inventory.
 

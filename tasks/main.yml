@@ -17,22 +17,6 @@
     - pdc_required_psmodules
     - pdc_required_features
 
-- name: Ensure role requirements from Ansible Galaxy are installed
-  delegate_to: 127.0.0.1
-  command: ansible-galaxy install -r {{ role_path }}/files/requirements.yml
-  register: ansible_galaxy_requirements
-  changed_when: "not ansible_galaxy_requirements.stdout.find('is already installed, skipping.')"
-
-- name: Ensure PowerShell 5 and common settings are setup as we need them to be
-  include_role:
-    name: justin_p.wincom
-  vars:
-    wincom_required_psmodule: "{{ pdc_required_psmodules }}"
-    wincom_service_delayed: "{{ pdc_delayed_services }}"
-    wincom_dns_nics: "{{ pdc_dns_nics }}"
-    wincom_dns_servers: "{{ pdc_dns_servers }}"
-  when: not ansible_windows_domain_member
-
 - name: Ensure the local user {{ pdc_administrator_username }} has the password specified for {{ pdc_netbios }}\{{ pdc_administrator_username }}
   win_user:
     name: "{{ pdc_administrator_username }}"
@@ -44,6 +28,12 @@
   set_fact:
     ansible_password: "{{ pdc_administrator_password }}"
   when: not ansible_windows_domain_member
+
+- name: Ensure that required DSC resources and Powershell Modules are present
+  win_psmodule:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ pdc_required_psmodules }}"
 
 - name: Ensure required Windows Features are installed
   win_feature:
