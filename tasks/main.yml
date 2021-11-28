@@ -13,7 +13,6 @@
     - pdc_domain_safe_mode_password
     - pdc_domain_functional_level
     - pdc_forest_functional_level
-    - pdc_delayed_services
     - pdc_required_psmodules
     - pdc_required_features
 
