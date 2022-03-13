@@ -53,6 +53,8 @@ Works on
         - role: justin_p.posh5
         - role: justin_p.wincom
         - role: justin_p.pdc
+          vars:
+           pdc_administrator_password: Str0ngPassw0rd01!
 
 See https://github.com/justin-p/ansible-role-pdc/blob/master/tests/inventory.yml for an example inventory.
 
