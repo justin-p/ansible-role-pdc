@@ -1,7 +1,7 @@
 ---
 # tasks file for ansible-pdc
 - name: Assert mandatory variables have been set
-  assert: { that: "{{ item }} is defined" }
+  ansible.builtin.assert: { that: "{{ item }} is defined" }
   with_items:
     - pdc_administrator_username
     - pdc_administrator_password
@@ -17,31 +17,31 @@
     - pdc_required_features
 
 - name: Ensure the local user {{ pdc_administrator_username }} has the password specified for {{ pdc_netbios }}\{{ pdc_administrator_username }}
-  win_user:
+  ansible.windows.win_user:
     name: "{{ pdc_administrator_username }}"
     password: "{{ pdc_administrator_password }}"
     groups: administrators
   when: not ansible_windows_domain_member
 
 - name: Ensure ansible_password matches the new password
-  set_fact:
+  ansible.builtin.set_fact:
     ansible_password: "{{ pdc_administrator_password }}"
   when: not ansible_windows_domain_member
 
 - name: Ensure that required DSC resources and Powershell Modules are present
-  win_psmodule:
+  ansible.windows.win_psmodule:
     name: "{{ item }}"
     state: present
   with_items: "{{ pdc_required_psmodules }}"
 
 - name: Ensure required Windows Features are installed
-  win_feature:
+  ansible.windows.win_feature:
     name: '{{ item }}'
     include_management_tools: yes
   with_items: "{{ pdc_required_features }}"
 
 - name: Ensure there is a Active Directory domain and forest on {{ ansible_hostname }}
-  win_domain:
+  ansible.windows.win_domain:
     dns_domain_name: "{{ pdc_domain }}"
     domain_netbios_name: "{{ pdc_netbios }}"
     safe_mode_password: "{{ pdc_domain_safe_mode_password }}"
@@ -52,15 +52,15 @@
   when: not ansible_windows_domain_member
 
 - name: Force all notified handlers to run at this point, not waiting for normal sync points
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Ensure a Domain Controller is available in the domain
-  win_dsc:
+  ansible.windows.win_dsc:
     resource_name: WaitForADDomain
     DomainName: "{{ pdc_domain }}"
 
 - name: Ensure DNS Forwarders are set to desired forwarders
-  win_shell: |
+  ansible.windows.win_shell: |
     Try {
       $CurrentForwarders = $([Array]$(Get-DnsServerForwarder).IPAddress.IPAddressToString)
       $DesiredForwarders = ConvertFrom-JSON '{{ pdc_desired_dns_forwarders | to_json }}'
@@ -84,12 +84,12 @@
   failed_when: dns_forwarders.rc == 2
 
 - name: Ensure upstream DNS servers is to {{ pdc_dns_servers }}
-  win_dns_client:
+  ansible.windows.win_dns_client:
    adapter_names: "{{ pdc_dns_nics }}"
    ipv4_addresses: "{{ pdc_dns_servers }}"
 
 - name: Ensure the UserPrincipalName of {{ pdc_netbios }}\{{ pdc_administrator_username }} is set to {{ pdc_administrator_username }}@{{ pdc_domain }}
-  win_domain_user:
+  ansible.windows.win_domain_user:
     name: "{{ pdc_administrator_username }}"
     upn: "{{ pdc_administrator_username }}@{{ pdc_domain }}"
     domain_username: "{{ pdc_netbios }}\\{{ pdc_administrator_username }}"
