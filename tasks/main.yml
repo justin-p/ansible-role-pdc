@@ -90,7 +90,7 @@
    ipv4_addresses: "{{ pdc_dns_servers }}"
 
 - name: Ensure the UserPrincipalName of {{ pdc_netbios }}\{{ pdc_administrator_username }} is set to {{ pdc_administrator_username }}@{{ pdc_domain }}
-  ansible.windows.win_domain_user:
+  community.windows.win_domain_user:
     name: "{{ pdc_administrator_username }}"
     upn: "{{ pdc_administrator_username }}@{{ pdc_domain }}"
     domain_username: "{{ pdc_netbios }}\\{{ pdc_administrator_username }}"
