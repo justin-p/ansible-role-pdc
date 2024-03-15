@@ -1,20 +1,20 @@
 ---
 # tasks file for ansible-pdc
 - name: Assert mandatory variables have been set
-  ansible.builtin.assert: { that: "{{ item }} is defined" }
-  with_items:
-    - pdc_administrator_username
-    - pdc_administrator_password
-    - ansible_windows_domain_member
-    - pdc_dns_nics
-    - pdc_dns_servers
-    - pdc_domain
-    - pdc_netbios
-    - pdc_domain_safe_mode_password
-    - pdc_domain_functional_level
-    - pdc_forest_functional_level
-    - pdc_required_psmodules
-    - pdc_required_features
+  ansible.builtin.assert:
+    that:
+      - pdc_administrator_username is defined
+      - pdc_administrator_password is defined
+      - ansible_windows_domain_member is defined
+      - pdc_dns_nics is defined
+      - pdc_dns_servers is defined
+      - pdc_domain is defined
+      - pdc_netbios is defined
+      - pdc_domain_safe_mode_password is defined
+      - pdc_domain_functional_level is defined
+      - pdc_forest_functional_level is defined
+      - pdc_required_psmodules is defined
+      - pdc_required_features is defined
 
 - name: Ensure the local user {{ pdc_administrator_username }} has the password specified for {{ pdc_netbios }}\{{ pdc_administrator_username }}
   ansible.windows.win_user:
